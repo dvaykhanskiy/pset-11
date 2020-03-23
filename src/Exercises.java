@@ -55,6 +55,12 @@ public class Exercises {
     int start = 0;
     int middle = 0;
     int end = list.size() - 1;
+
+    if (list == null || list.length == 0 || target.equals(null)) {
+          return -1;
+      }
+
+    
   }
 
   public int[] bubble(int[] list, boolean ascending) {
