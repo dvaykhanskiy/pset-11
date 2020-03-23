@@ -298,4 +298,47 @@ public class Exercises {
   public String[] merge(String[] list, boolean ascending) {
     return null;
   }
+
+  private void combineHalves(ArrayList < Integer > left, ArrayList < Integer > right, ArrayList < Integer > complete) {
+    int leftIndex = 0;
+    int rightIndex = 0;
+    int completeArrayIndex = 0;
+    while (leftIndex < left.size() && rightIndex < right.size()) {
+      if ((left.get(leftIndex).compareTo(right.get(rightIndex))) < 0) {
+        complete.set(completeArrayIndex, left.get(leftIndex));
+        leftIndex++;
+      } else {
+        complete.set(completeArrayIndex, right.get(rightIndex));
+        rightIndex++;
+      }
+      completeArrayIndex++;
+    }
+    ArrayList < Integer > rest;
+    int restIndex;
+    if (leftIndex >= left.size()) {
+      rest = right;
+      restIndex = rightIndex;
+    } else {
+      rest = left;
+      restIndex = leftIndex;
+    }
+
+    for (int i = restIndex; i < rest.size(); i++) {
+      complete.set(completeArrayIndex, rest.get(i));
+      completeArrayIndex++;
+    }
+  }
+
+  private static void combine(String[] list, String[] left, String[] right) {
+  int a = 0;
+  int b = 0;
+  for (int i = 0; i < list.length; i++) {
+    if (b >= right.length || (a < left.length && left[a].compareToIgnoreCase(right[b]) < 0)) {
+      list[i] = left[a];
+      a++;
+    } else {
+      list[i] = right[b];
+      b++;
+    }
+  }
 }
