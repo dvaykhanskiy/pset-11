@@ -132,7 +132,9 @@ public class Exercises {
   }
 
   public ArrayList<Integer> insertion(ArrayList<Integer> list, boolean ascending) {
-    return null;
+    if (list == null || list.size() == 0) {
+      return null;
+    }
   }
 
   public String[] insertion(String[] list, boolean ascending) {
