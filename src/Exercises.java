@@ -206,38 +206,64 @@ public class Exercises {
   }
 
   public int[] selection(int[] list, boolean ascending) {
-    if (list.contains(null) || list == null) {
+      if (list == null || list.length == 0) {
           return null;
       }
-
-      ArrayList <Integer> left = new ArrayList < Integer > ();
-      ArrayList <Integer> right = new ArrayList < Integer > ();
-      int center;
-
-      if (list.size() == 1) {
-          return list;
-      } else {
-          center = list.size() / 2;
-          for (int i = 0; i < center; i++) {
-              left.add(list.get(i));
+      int temp;
+      if (ascending) {
+          for (int i = 0; i < list.length - 1; i++) {
+              int index = i;
+              for (int j = i + 1; j < list.length; j++) {
+                  if (list[j] < list[index]) {
+                      index = j;
+                  }
+              }
+              int smallerNumber = list[index];
+              list[index] = list[i];
+              list[i] = smallerNumber;
           }
-
-          for (int i = center; i < list.size(); i++) {
-              right.add(list.get(i));
+      } else if (!ascending) {
+          for (int i = 0; i < list.length - 1; i++) {
+              int index = i;
+              for (int j = i + 1; j < list.length; j++) {
+                  if (list[j] > list[index]) {
+                      index = j;
+                  }
+              }
+              int smallerNumber = list[index];
+              list[index] = list[i];
+              list[i] = smallerNumber;
           }
-
-          left = merge(left, true);
-          right = merge(right, true);
-          combineHalves(left, right, list);
-      }
-      if (!ascending) {
-          Collections.reverse(list);
       }
       return list;
   }
 
   public ArrayList<String> selection(ArrayList<String> list, boolean ascending) {
-    return null;
+    if (Arrays.asList(list).contains(null) || Arrays.asList(list) == null) {
+      return null;
+    }
+
+    for (int i = 0; i < list.size(); i++) {
+      String smallest = list.get(i);
+      int smallestIndex = i;
+      for (int j = i; j < list.size(); j++) {
+        String value = list.get(j);
+        if (value.compareTo(smallest) < 0) {
+                  smallest = value;
+                  smallestIndex = j;
+        }
+      }
+      if (smallestIndex != i) {
+        String head = list.get(i);
+        list.set(i, smallest);
+        list.set(smallestIndex, head);
+      }
+    }
+
+    if (!ascending) {
+      Collections.reverse(list);
+    }
+    return list;
   }
 
   public ArrayList<Integer> merge(ArrayList<Integer> list, boolean ascending) {
