@@ -54,7 +54,7 @@ public class Exercises {
   public int findMeFaster(String[] list, String target) {
     int start = 0;
     int middle = 0;
-    int end = list.size() - 1;
+    int end = list.length - 1;
 
     if (list == null || list.length == 0 || target.equals(null)) {
           return -1;
@@ -171,7 +171,9 @@ public class Exercises {
   }
 
   public String[] insertion(String[] list, boolean ascending) {
-    return null;
+    if (list == null || list.length == 0) {
+      return null;
+    }
   }
 
   public int[] selection(int[] list, boolean ascending) {
