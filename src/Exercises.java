@@ -206,7 +206,34 @@ public class Exercises {
   }
 
   public int[] selection(int[] list, boolean ascending) {
-    return null;
+    if (list.contains(null) || list == null) {
+          return null;
+      }
+
+      ArrayList <Integer> left = new ArrayList < Integer > ();
+      ArrayList <Integer> right = new ArrayList < Integer > ();
+      int center;
+
+      if (list.size() == 1) {
+          return list;
+      } else {
+          center = list.size() / 2;
+          for (int i = 0; i < center; i++) {
+              left.add(list.get(i));
+          }
+
+          for (int i = center; i < list.size(); i++) {
+              right.add(list.get(i));
+          }
+
+          left = merge(left, true);
+          right = merge(right, true);
+          combineHalves(left, right, list);
+      }
+      if (!ascending) {
+          Collections.reverse(list);
+      }
+      return list;
   }
 
   public ArrayList<String> selection(ArrayList<String> list, boolean ascending) {
