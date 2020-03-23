@@ -88,7 +88,18 @@ public class Exercises {
           }
         }
       }
-    }
+    } else if (!ascending) {
+        for (int i = list.length; i > 1; i--) {
+          for (int j = list.length-1; j > 0; j--) {
+            if (list[j] > list[j - 1]) {
+              int temp = list[j];
+              list[j] = list[j - 1];
+              list[j - 1] = temp;
+            }
+          }
+        }
+      }
+    return list;
   }
 
   public ArrayList<String> bubble(ArrayList<String> list, boolean ascending) {
